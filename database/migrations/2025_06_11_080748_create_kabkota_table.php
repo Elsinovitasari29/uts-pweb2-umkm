@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('provinsis', function (Blueprint $table) {
+        Schema::create('kabkota', function (Blueprint $table) {
             $table->id();
             $table->string('nama', 45);
-            $table->string('ibukota', 45);
-            $table->double('lotitude');
+            $table->double('latitude');
             $table->double('longtitude');
             $table->timestamps();
+            $table->unsignedBigInteger('provinsi_id');
+            
+            $table->foreign('provinsi_id')->references('id')->on('provinsi')->onDelete('cascade');
         });
     }
 
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('provinsis');
+        Schema::dropIfExists('kabkota');
     }
 };

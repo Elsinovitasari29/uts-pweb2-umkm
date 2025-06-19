@@ -19,15 +19,15 @@ return new class extends Migration
             $table->string('alamat', 100);
             $table->string('website', 45);
             $table->string('email', 45);
-            $table->unsignedBigInteger('kabkotas_id');
+            $table->unsignedBigInteger('kabkota_id');
             $table->integer('rating');
-            $table->unsignedBigInteger('kategori_umkms_id');
-            $table->unsignedBigInteger('pembinas_id');
+            $table->unsignedBigInteger('kategori_umkm_id');
+            $table->unsignedBigInteger('pembina_id');
             $table->timestamps();
 
-            $table->foreign('kabkotas_id')->references('id')->on('kabkotas')->onDelete('cascade');
-            $table->foreign('kategori_umkms_id')->references('id')->on('kategori_umkms')->onDelete('cascade');
-            $table->foreign('pembinas_id')->references('id')->on('pembinas')->onDelete('cascade');
+            $table->foreign('kabkota_id')->references('id')->on('kabkota')->onDelete('cascade');
+            $table->foreign('kategori_umkm_id')->references('id')->on('kategori_umkm')->onDelete('cascade');
+            $table->foreign('pembina_id')->references('id')->on('pembina')->onDelete('cascade');
         });
     }
 
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('umkms');
+        Schema::dropIfExists('umkm');
     }
 };

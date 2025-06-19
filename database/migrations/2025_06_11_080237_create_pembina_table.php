@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kabkotas', function (Blueprint $table) {
+        Schema::create('pembina', function (Blueprint $table) {
             $table->id();
             $table->string('nama', 45);
-            $table->double('latitude');
-            $table->double('longitude');
+            $table->string('gender', 1);
+            $table->date('tgl_lahir');
+            $table->string('tmp_lahir', 30);
+            $table->string('keahlian', 100);
             $table->timestamps();
-            $table->unsignedBigInteger('provinsis_id');
-            
-            $table->foreign('provinsis_id')->references('id')->on('provinsis')->onDelete('cascade');
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kabkotas');
+        Schema::dropIfExists('pembina');
     }
 };
