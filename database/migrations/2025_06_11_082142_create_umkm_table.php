@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('umkms', function (Blueprint $table) {
+        Schema::create('umkm', function (Blueprint $table) {
             $table->id();
             $table->string('nama', 45);
             $table->double('modal');
