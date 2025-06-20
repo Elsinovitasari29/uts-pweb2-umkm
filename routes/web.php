@@ -7,6 +7,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Auth
-Route::get('/', [AuthController::class, 'login']);
-Route::post('/login', [AuthController::class, 'authenticate']);
+Route::get('/about', function () {
+    return view('about');
+});
+Route::get('/products', function () {
+    return view('products');
+});
+Route::get('/store', function () {
+    return view('store');
+});
+
