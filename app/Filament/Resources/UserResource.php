@@ -12,11 +12,17 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 
+
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    // Tambahkan ini
+    protected static ?string $navigationLabel = 'User';
+    protected static ?string $label = 'User';
+    protected static ?string $pluralLabel = 'User';
 
     public static function form(Form $form): Form
     {

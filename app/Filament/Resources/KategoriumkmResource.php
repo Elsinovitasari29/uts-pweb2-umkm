@@ -18,6 +18,12 @@ class KategoriumkmResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    // Tambahkan ini
+    protected static ?string $navigationLabel = 'Kategori Umkm';
+    protected static ?string $label = 'Kategori Umkm';
+    protected static ?string $pluralLabel = 'Kategori Umkm';
+
+
     public static function form(Form $form): Form
     {
         return $form
