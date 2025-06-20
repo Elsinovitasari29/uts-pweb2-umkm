@@ -23,6 +23,12 @@ class KabkotaResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    // Tambahan ini
+    protected static ?string $navigationLabel = 'Kab/Kota';
+    protected static ?string $label = 'Kab/Kota';
+    protected static ?string $pluralLabel = 'Kab/Kota';
+
+
     public static function form(Form $form): Form
     {
         return $form

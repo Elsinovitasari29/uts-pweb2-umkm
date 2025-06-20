@@ -18,6 +18,11 @@ class ProvinsiResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    // Tambahkan di sini
+    protected static ?string $navigationLabel = 'Provinsi';
+    protected static ?string $label = 'Provinsi';
+    protected static ?string $pluralLabel = 'Provinsi';
+
     public static function form(Form $form): Form
     {
         return $form

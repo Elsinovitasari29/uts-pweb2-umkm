@@ -9,19 +9,23 @@ use Filament\Forms\Form;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Placeholder;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
-use Illuminate\Support\Facades\Storage;
 
 class UmkmResource extends Resource
 {
     protected static ?string $model = Umkm::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    // Tambahkan ini:
+    protected static ?string $navigationLabel = 'Umkm';
+    protected static ?string $label = 'Umkm';
+    protected static ?string $pluralLabel = 'Umkm';
+
 
     public static function form(Form $form): Form
     {
@@ -44,8 +48,12 @@ class UmkmResource extends Resource
                     ->relationship('pembina', 'nama')
                     ->required(),
                 FileUpload::make('foto')
-                
-                    
+                    ->label('Foto')
+                    ->image()
+                    ->directory('umkm-foto')
+                    ->disk('public')
+                    ->maxSize(2048) // 2MB
+                    ->required(),
             ]);
     }
 
@@ -56,7 +64,10 @@ class UmkmResource extends Resource
                 TextColumn::make('id')->sortable(),
                 TextColumn::make('nama')->searchable(),
                 TextColumn::make('modal'),
-                ImageColumn::make('foto'),
+                ImageColumn::make('foto')
+                    ->label('Foto')
+                    ->disk('public')
+                    ->height(50),
                 TextColumn::make('pemilik'),
                 TextColumn::make('alamat'),
                 TextColumn::make('website'),
@@ -65,8 +76,6 @@ class UmkmResource extends Resource
                 TextColumn::make('rating'),
                 TextColumn::make('kategoriUmkm.nama')->label('Kategori'),
                 TextColumn::make('pembina.nama')->label('Pembina'),
-                
-                
             ])
             ->filters([
                 //
