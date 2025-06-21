@@ -18,12 +18,17 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
+
+
+
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->default()
+            ->brandName('NUANSA') // 
+            ->brandLogo(asset('logoumkm.png'))
+            ->favicon(asset('favicon.ico'))
             ->id('admin')
             ->path('admin')
             ->login()
@@ -37,8 +42,10 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                \App\Filament\Widgets\StatsOverview::class,
+
+
+                
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -55,4 +62,5 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ]);
     }
+
 }
