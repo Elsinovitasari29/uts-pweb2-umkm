@@ -20,6 +20,12 @@ class PembinaResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    // Tambahkan ini
+    protected static ?string $navigationLabel = 'Pembina';
+    protected static ?string $label = 'Pembina';
+    protected static ?string $pluralLabel = 'Pembina';
+
+
     public static function form(Form $form): Form
     {
         return $form
