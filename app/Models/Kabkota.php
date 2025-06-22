@@ -10,7 +10,7 @@ class Kabkota extends Model
     protected $fillable = [
         'nama',
         'latitude',
-        'longitude',
+        'longtitude',
         'provinsi_id', // pastikan ini sesuai dengan nama kolom di tabel
     ];
 

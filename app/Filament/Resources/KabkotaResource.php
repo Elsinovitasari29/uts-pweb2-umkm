@@ -24,9 +24,9 @@ class KabkotaResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     // Tambahan ini
-    protected static ?string $navigationLabel = 'Kab/Kota';
-    protected static ?string $label = 'Kab/Kota';
-    protected static ?string $pluralLabel = 'Kab/Kota';
+    protected static ?string $navigationLabel = 'Kabkota';
+    protected static ?string $label = 'Kabkota';
+    protected static ?string $pluralLabel = 'Kabkota';
 
 
     public static function form(Form $form): Form
@@ -39,7 +39,7 @@ class KabkotaResource extends Resource
                 TextInput::make('latitude')
                     ->numeric()
                     ->required(),
-                TextInput::make('longitude')
+                TextInput::make('longtitude')
                     ->numeric()
                     ->required(),
                 Select::make('provinsi_id')
@@ -52,10 +52,10 @@ class KabkotaResource extends Resource
     {
         return $table
             ->columns([
-             TextColumn::make('id')->sortable(),
+                TextColumn::make('id')->sortable(),
                 TextColumn::make('nama')->searchable(),
                 TextColumn::make('latitude'),
-                TextColumn::make('longitude'),
+                TextColumn::make('longtitude'),
                 TextColumn::make('provinsi.nama'), // pastikan relasi sudah ada
             ])
             ->filters([

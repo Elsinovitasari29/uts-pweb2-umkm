@@ -13,6 +13,7 @@ use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 
 
+
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
@@ -28,7 +29,28 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-               //
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->maxLength(255)
+                    ->label('Nama'),
+                Forms\Components\TextInput::make('email')
+                    ->email()
+                    ->required()
+                    ->maxLength(255)
+                    ->unique(ignoreRecord: true)
+                    ->label('Email'),
+                Forms\Components\Select::make('roles')
+                    ->relationship('roles', 'name')
+                    ->multiple()
+                    ->preload()
+                    ->searchable(),
+                Forms\Components\TextInput::make('password')
+                    ->password()
+                    ->required(fn ($context) => $context === 'create')
+                    ->maxLength(255)
+                    ->dehydrateStateUsing(fn ($state) => bcrypt($state))
+                    ->label('Password')
+                    ->visibleOn('create'),
             ]);
     }
 
@@ -36,9 +58,14 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')->sortable(),
-                TextColumn::make('name')->searchable(),
-                TextColumn::make('email')->searchable(),
+                TextColumn::make('name')
+                ->searchable()
+                ->label('Nama'),
+                TextColumn::make('email')
+                ->searchable()
+                ->label('Email'),
+                TextColumn::make('roles.name')
+                ->label('Role'),
             ])
             ->filters([
                 //
